@@ -1,6 +1,8 @@
 # Establish a working envirionment for Spark with more than just the basics.
-## @TODO: establish a stable base image tag to work from.
-FROM jupyter/pyspark-notebook:latest
+#
+# a249876881d3 - From 5/31/16, jupyter/docker-stacks
+#
+FROM jupyter/pyspark-notebook:a249876881d3
 
 MAINTAINER Docker Support <docker-support@brillozon.com>
 
@@ -20,10 +22,17 @@ RUN \
   && pip install \
          boto3 \
          pillow \
+         stop-words \
          thunder-python
 
 ADD https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.data.gz /home/jovyan/work/data/
-COPY simple-spark.ipynb /home/jovyan/work/
+COPY notebooks/* /home/jovyan/work/
+COPY data/* /home/jovyan/work/data/
+COPY images/* /home/jovyan/work/images/
+
+RUN \
+     chown -R jovyan.users /home/jovyan \
+  && chmod -R 0775 /home/jovyan
 
 USER jovyan
 
