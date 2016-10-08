@@ -17,6 +17,8 @@ RUN \
   && apt-get install -q -y -o Dpkg::Options::="--force-confnew" \
              curl
 
+USER jovyan
+
 RUN \
      pip install --upgrade pip \
   && pip install \
@@ -29,6 +31,8 @@ ADD https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.da
 COPY notebooks/* /home/jovyan/work/
 COPY data/* /home/jovyan/work/data/
 COPY images/* /home/jovyan/work/images/
+
+USER root
 
 RUN \
      chown -R jovyan.users /home/jovyan \
