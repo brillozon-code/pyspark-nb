@@ -6,6 +6,14 @@ additional Python packages, image processing support (in the form of
 system libraries and headers as well as Python packages), and example
 notebooks.
 
+### Building the Container
+
+To build a local copy of the container, name it so that it can be
+distinguished from an image pulled from the repository.  Adjust your
+run commands to use the local image once it is built.
+
+> bash> docker build -t pyspark-nb .
+
 ### Running the Notebook
 
 ##### Basic Usage
@@ -43,5 +51,6 @@ these steps each time you start the container.
 ### Included Notebooks
 
 * introduction - basics of importing and configuring the PySpark module.
-* simple-tree - reads a dataset from the web, trains a decision tree model, and evaluates the results.
+* wordcount    - simple word counting activity using Spark.
+* simple-tree  - reads a dataset from the web, trains a decision tree model, and evaluates the results.
 
